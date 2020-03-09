@@ -108,26 +108,44 @@ $(document).ready(function() {
           //Low green
           var colorUv = $("<label>");
           //colorUv.;
+          //colorUv.addClass("uvIndexclass");
+          $(colorUv).css("background-color", "green");
           colorUv.append(uvIndex);
+
           $("#results").append("UV Index: ", colorUv);
           alert("Less than 3:");
           //$("#results").append("UV Index: " + response[0].value + "<br>");
         }
-        if (uvIndexurl > 3 && uvIndex <= 6) {
+        if (uvIndex > 3 && uvIndex <= 6) {
           //Moderate yellow
-          $("#results").append("UV Index: " + response[0].value + "<br>");
+          var colorUv = $("<label>");
+          $(colorUv).css("background-color", "yellow");
+          colorUv.append(uvIndex);
+          $("#results").append("UV Index: ", colorUv);
         }
-        if (uvIndexurl > 6 && uvIndex <= 8) {
+        if (uvIndex > 6 && uvIndex <= 8) {
           //High orange
+          var colorUv = $("<label>");
+          $(colorUv).css("background-color", "orange");
+          colorUv.append(uvIndex);
+          $("#results").append("UV Index: ", colorUv);
         }
-        if (uvIndexurl > 8 && uvIndex <= 11) {
+        if (uvIndex > 8 && uvIndex <= 11) {
           //Very High red
+          var colorUv = $("<label>");
+          $(colorUv).css("background-color", "red");
+          colorUv.append(uvIndex);
+          $("#results").append("UV Index: ", colorUv);
         }
-        if (uvIndexurl > 11) {
+        if (uvIndex > 11) {
           //Extreme purple
+          var colorUv = $("<label>");
+          $(colorUv).css("background-color", "purple");
+          colorUv.append(uvIndex);
+          $("#results").append("UV Index: ", colorUv);
         }
 
-        $("#results").append("UV Index: " + uvIndex + "<br>");
+        // $("#results").append("UV Index: " + uvIndex + "<br>");
       })
       .fail(function(response) {
         $("#results").append("<h1>No UV Index found.<br>");
