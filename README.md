@@ -42,7 +42,7 @@ This project is about building a weather dashboard with form inputs.
 
 # Screenshots
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
+![weather dashboard demo](./assets/img/06-server-side-apis-homework-demo.png)
 
 # References:
 
