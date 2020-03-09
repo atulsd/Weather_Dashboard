@@ -34,7 +34,7 @@ Clone the Repo
 
 To view the web pages go to the following link
 
-https://atulsd.github.io/Weather_Dashboard/
+https://atulsd.github.io/Weather_Dashboard
 
 # Usage:
 
