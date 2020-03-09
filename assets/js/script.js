@@ -59,7 +59,7 @@ $(document).ready(function() {
             "&lon=" +
             longitude;
           getUvindex(uvIndexurl);
-          alert("Uvindex after function call is:" + uvIndex);
+          //alert("Uvindex after function call is:" + uvIndex);
 
           localStorage.setItem("searchedCity", response.city.name);
           $("#results").append("City: " + response.city.name + "<br>");
@@ -94,19 +94,43 @@ $(document).ready(function() {
   }
 
   function getUvindex(uvIndexurl) {
-    alert("uvindex url is:" + uvIndexurl);
+    //alert("uvindex url is:" + uvIndexurl);
     $.ajax({
       url: uvIndexurl,
       method: "GET"
     })
       .then(function(response) {
-        alert("Uv index inside Ajax is:" + response[0].value);
-        console.log(response);
-        //uvIndex = response[0].value;
-        $("#results").append("UV Index: " + response[0].value + "<br>");
+        //alert("Uv index inside Ajax is:" + response[0].value);
+        //console.log(response);
+        var uvIndex = response[0].value;
+
+        if (uvIndex < 3) {
+          //Low green
+          var colorUv = $("<label>");
+          //colorUv.;
+          colorUv.append(uvIndex);
+          $("#results").append("UV Index: ", colorUv);
+          alert("Less than 3:");
+          //$("#results").append("UV Index: " + response[0].value + "<br>");
+        }
+        if (uvIndexurl > 3 && uvIndex <= 6) {
+          //Moderate yellow
+          $("#results").append("UV Index: " + response[0].value + "<br>");
+        }
+        if (uvIndexurl > 6 && uvIndex <= 8) {
+          //High orange
+        }
+        if (uvIndexurl > 8 && uvIndex <= 11) {
+          //Very High red
+        }
+        if (uvIndexurl > 11) {
+          //Extreme purple
+        }
+
+        $("#results").append("UV Index: " + uvIndex + "<br>");
       })
       .fail(function(response) {
-        $("#results").append("<h1>No uv found.<br>");
+        $("#results").append("<h1>No UV Index found.<br>");
       });
   }
 });
