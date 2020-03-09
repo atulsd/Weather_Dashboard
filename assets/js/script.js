@@ -1,5 +1,6 @@
 $(document).ready(function() {
   var apiKey = "4989a668363ee1641a25c82bbed4d190";
+  const uvIndex = 0;
   //https://api.openweathermap.org/data/2.5/forecast?q=Austin&appid=4989a668363ee1641a25c82bbed4d190
   //var city = document.querySelector(".form-control.text");
   var storedCity = localStorage.getItem("searchedCity");
@@ -46,6 +47,19 @@ $(document).ready(function() {
         function displayResult() {
           var iconcode = response.list[0].weather[0].icon;
           var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+          var longitude = response.city.coord.lon;
+          var latitude = response.city.coord.lat;
+          var uvIndexurl =
+            "https://api.openweathermap.org/data/2.5/uvi/forecast?q=" +
+            city +
+            "&appid=" +
+            apiKey +
+            "&lat=" +
+            latitude +
+            "&lon=" +
+            longitude;
+          getUvindex(uvIndexurl);
+          alert("Uvindex after function call is:" + uvIndex);
 
           localStorage.setItem("searchedCity", response.city.name);
           $("#results").append("City: " + response.city.name + "<br>");
@@ -76,6 +90,23 @@ $(document).ready(function() {
       })
       .fail(function(response) {
         $("#results").append("<h1>No data found.<br>");
+      });
+  }
+
+  function getUvindex(uvIndexurl) {
+    alert("uvindex url is:" + uvIndexurl);
+    $.ajax({
+      url: uvIndexurl,
+      method: "GET"
+    })
+      .then(function(response) {
+        alert("Uv index inside Ajax is:" + response[0].value);
+        console.log(response);
+        //uvIndex = response[0].value;
+        $("#results").append("UV Index: " + response[0].value + "<br>");
+      })
+      .fail(function(response) {
+        $("#results").append("<h1>No uv found.<br>");
       });
   }
 });
