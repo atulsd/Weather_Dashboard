@@ -1,33 +1,31 @@
 $(document).ready(function() {
   var apiKey = "4989a668363ee1641a25c82bbed4d190";
   //https://api.openweathermap.org/data/2.5/forecast?q=Austin&appid=4989a668363ee1641a25c82bbed4d190
-  //var term = document.querySelector(".form-control.text");
+  //var city = document.querySelector(".form-control.text");
   var storedCity = localStorage.getItem("searchedCity");
-  term = storedCity;
-  alert("stored City is:" + storedCity);
-  if (term === null) {
-    alert("Inside null:" + term);
-    term = "";
+  city = storedCity;
+
+  if (city === null) {
+    city = "";
   } else {
-    term = localStorage.getItem("searchedCity");
-    alert("From local storage " + term);
+    city = localStorage.getItem("searchedCity");
   }
 
   var queryURL =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
-    term +
+    city +
     "&appid=" +
     apiKey;
 
-  var buttonValue = document.querySelector(".btn");
-  buttonValue.addEventListener("click", function(event) {
+  var searchButton = document.querySelector(".btn");
+
+  searchButton.addEventListener("click", function(event) {
     event.preventDefault();
     $("#results").empty();
-    term = $(".form-control").val();
-    alert("Valu is" + term);
+    city = $(".form-control").val();
     queryURL =
       "https://api.openweathermap.org/data/2.5/forecast?q=" +
-      term +
+      city +
       "&appid=" +
       apiKey;
     callAjax();
@@ -35,14 +33,11 @@ $(document).ready(function() {
 
   callAjax();
   function callAjax() {
-    alert("Inside Ajax function.");
     $.ajax({
       url: queryURL,
       method: "GET"
     })
       .then(function(response) {
-        // .btn.preventDefault();
-        // $(".btn").on("click", displayResult);
         displayResult();
         function displayResult() {
           var iconcode = response.list[0].weather[0].icon;
