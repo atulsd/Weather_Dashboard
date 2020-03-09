@@ -23,6 +23,9 @@ $(document).ready(function() {
     event.preventDefault();
     $("#results").empty();
     city = $(".form-control").val();
+    var cityList = $("<li>");
+    cityList.append(city);
+    $(".list-group").append(cityList);
     queryURL =
       "https://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
@@ -39,6 +42,7 @@ $(document).ready(function() {
     })
       .then(function(response) {
         displayResult();
+
         function displayResult() {
           var iconcode = response.list[0].weather[0].icon;
           var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
