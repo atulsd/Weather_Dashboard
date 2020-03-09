@@ -1,11 +1,18 @@
 $(document).ready(function() {
   var apiKey = "4989a668363ee1641a25c82bbed4d190";
   //https://api.openweathermap.org/data/2.5/forecast?q=Austin&appid=4989a668363ee1641a25c82bbed4d190
-  var term = document.querySelector(".form-control.text");
+  //var term = document.querySelector(".form-control.text");
+  var storedCity = localStorage.getItem("searchedCity");
+  term = storedCity;
+  alert("stored City is:" + storedCity);
   if (term === null) {
-    term = "austin";
+    alert("Inside null:" + term);
+    term = "";
+  } else {
+    term = localStorage.getItem("searchedCity");
+    alert("From local storage " + term);
   }
-  alert(term);
+
   var queryURL =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     term +
@@ -25,6 +32,7 @@ $(document).ready(function() {
       apiKey;
     callAjax();
   });
+
   callAjax();
   function callAjax() {
     alert("Inside Ajax function.");
@@ -39,6 +47,7 @@ $(document).ready(function() {
         var iconcode = response.list[0].weather[0].icon;
         var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
+        localStorage.setItem("searchedCity", response.city.name);
         $("#results").append("City: " + response.city.name + "<br>");
         $("#results").append("Date: " + response.list[0].dt_txt + "<br>");
         $("#results").append(
