@@ -24,6 +24,9 @@ $(document).ready(function() {
     event.preventDefault();
     $("#results").empty();
     city = $(".form-control").val();
+    if (city === "") {
+      alert("Please enter a city.");
+    }
     var cityList = $("<li>");
     cityList.append(city);
     $(".list-group").append(cityList);
@@ -59,8 +62,6 @@ $(document).ready(function() {
             "&lon=" +
             longitude;
           getUvindex(uvIndexurl);
-          //alert("Uvindex after function call is:" + uvIndex);
-
           localStorage.setItem("searchedCity", response.city.name);
           $("#results").append("City: " + response.city.name + "<br>");
           $("#results").append("Date: " + response.list[0].dt_txt + "<br>");
@@ -94,27 +95,20 @@ $(document).ready(function() {
   }
 
   function getUvindex(uvIndexurl) {
-    //alert("uvindex url is:" + uvIndexurl);
     $.ajax({
       url: uvIndexurl,
       method: "GET"
     })
       .then(function(response) {
-        //alert("Uv index inside Ajax is:" + response[0].value);
-        //console.log(response);
         var uvIndex = response[0].value;
 
         if (uvIndex < 3) {
           //Low green
           var colorUv = $("<label>");
-          //colorUv.;
-          //colorUv.addClass("uvIndexclass");
           $(colorUv).css("background-color", "green");
           colorUv.append(uvIndex);
 
           $("#results").append("UV Index: ", colorUv);
-          alert("Less than 3:");
-          //$("#results").append("UV Index: " + response[0].value + "<br>");
         }
         if (uvIndex > 3 && uvIndex <= 6) {
           //Moderate yellow
@@ -144,8 +138,6 @@ $(document).ready(function() {
           colorUv.append(uvIndex);
           $("#results").append("UV Index: ", colorUv);
         }
-
-        // $("#results").append("UV Index: " + uvIndex + "<br>");
       })
       .fail(function(response) {
         $("#results").append("<h1>No UV Index found.<br>");
