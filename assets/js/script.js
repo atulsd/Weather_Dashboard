@@ -125,6 +125,7 @@ $(document).ready(function() {
           // );
           var highTemp = 0;
           highTemp = response.list[0].main.temp;
+
           var checkTemp = 0;
           var checkHumi = 0;
 
@@ -152,17 +153,28 @@ $(document).ready(function() {
 
           //alert(currentTime[11]);
           //alert(currentTime[12]);
+          iconcode = response.list[0].weather[0].icon;
+          iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+
+          var highHumi = 0;
+          highHumi = response.list[0].main.humidity;
+
           var looped = 0;
           for (var i = 0; i < loopTime; i++) {
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
+            iconcode = response.list[i].weather[0].icon;
             alert("Check temp is:" + checkTemp);
             alert("looptime is:" + loopTime);
             if (highTemp < checkTemp) {
               highTemp = checkTemp;
             }
+            if (highHumi < checkHumi) {
+              highHumi = checkHumi;
+            }
             looped++;
           }
+          iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
           //loopTime = 40 - loopTime;
           day1Looptime = loopTime + 8;
           day2Looptime = day1Looptime + 8;
@@ -178,13 +190,18 @@ $(document).ready(function() {
             //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
+            iconcode = response.list[i].weather[0].icon;
             //alert("Check temp is:" + checkTemp);
             //alert("looptime is:" + loopTime);
             if (highTempday1 < checkTemp) {
               highTempday1 = checkTemp;
             }
+            if (humidityDay1 < checkHumi) {
+              humidityDay1 = checkHumi;
+            }
             looped++;
           }
+          var iconurl1 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           alert("Value of looped after day1:" + looped);
           var highTempday2 = 0;
           var humidityDay2 = 0;
@@ -192,13 +209,18 @@ $(document).ready(function() {
             //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
+            iconcode = response.list[i].weather[0].icon;
             //alert("Check temp is:" + checkTemp);
             //alert("looptime is:" + loopTime);
             if (highTempday2 < checkTemp) {
               highTempday2 = checkTemp;
             }
+            if (humidityDay2 < checkHumi) {
+              humidityDay2 = checkHumi;
+            }
             looped++;
           }
+          var iconurl2 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           alert("Value of looped after day2:" + looped);
 
           var highTempday3 = 0;
@@ -207,13 +229,18 @@ $(document).ready(function() {
             //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
+            iconcode = response.list[i].weather[0].icon;
             //alert("Check temp is:" + checkTemp);
             //alert("looptime is:" + loopTime);
             if (highTempday3 < checkTemp) {
               highTempday3 = checkTemp;
             }
+            if (humidityDay3 < checkHumi) {
+              humidityDay3 = checkHumi;
+            }
             looped++;
           }
+          var iconurl3 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           alert("Value of looped after day3:" + looped);
 
           var highTempday4 = 0;
@@ -222,13 +249,18 @@ $(document).ready(function() {
             //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
+            iconcode = response.list[i].weather[0].icon;
             //alert("Check temp is:" + checkTemp);
             //alert("looptime is:" + loopTime);
             if (highTempday4 < checkTemp) {
               highTempday4 = checkTemp;
             }
+            if (humidityDay4 < checkHumi) {
+              humidityDay4 = checkHumi;
+            }
             looped++;
           }
+          var iconurl4 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           alert("Value of looped after day4:" + looped);
 
           var highTempday5 = 0;
@@ -237,19 +269,22 @@ $(document).ready(function() {
             //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
+            iconcode = response.list[i].weather[0].icon;
             //alert("Check temp is:" + checkTemp);
             //alert("looptime is:" + loopTime);
             if (highTempday5 < checkTemp) {
               highTempday5 = checkTemp;
             }
+            if (humidityDay5 < checkHumi) {
+              humidityDay5 = checkHumi;
+            }
             looped++;
           }
+          var iconurl5 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           alert("Value of looped after day5:" + looped);
 
           $("#results").append("Temperature: " + highTemp + "<br>");
-          $("#results").append(
-            "Humidity: " + response.list[0].main.humidity + "<br>"
-          );
+          $("#results").append("Humidity: " + highHumi + "<br>");
           $("#results").append(
             "Wind Speed: " + response.list[0].wind.speed + "<br>"
           );
@@ -258,44 +293,44 @@ $(document).ready(function() {
           var day1 = today.add("days", 0);
           $("#day1").append(moment(day1).format("DD/MM/YYYY"));
           var imageIcon1 = $("<img>");
-          $(imageIcon1).attr("src", iconurl);
+          $(imageIcon1).attr("src", iconurl1);
           $("#icon1").append(imageIcon1);
           $("#temp1").append("Temp: " + highTempday1);
-          $("#hum1").append("Humidity: " + response.list[0].main.humidity);
+          $("#hum1").append("Humidity: " + humidityDay1);
 
           var day2 = day1.add("days", 1);
           $("#day2").append(moment(day2).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
-          $(imageIcon1).attr("src", iconurl);
+          $(imageIcon1).attr("src", iconurl2);
           $("#icon2").append(imageIcon1);
 
           $("#temp2").append("Temp: " + highTempday2);
-          $("#hum2").append("Humidity: " + response.list[0].main.humidity);
+          $("#hum2").append("Humidity: " + humidityDay2);
 
           //var day2 = moment();
           var day3 = day2.add("days", 1);
           $("#day3").append(moment(day3).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
-          $(imageIcon1).attr("src", iconurl);
+          $(imageIcon1).attr("src", iconurl3);
           $("#icon3").append(imageIcon1);
           $("#temp3").append("Temp: " + highTempday3);
-          $("#hum3").append("Humidity: " + response.list[0].main.humidity);
+          $("#hum3").append("Humidity: " + humidityDay3);
 
           var day4 = day3.add("days", 1);
           $("#day4").append(moment(day4).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
-          $(imageIcon1).attr("src", iconurl);
+          $(imageIcon1).attr("src", iconurl4);
           $("#icon4").append(imageIcon1);
           $("#temp4").append("Temp: " + highTempday4);
-          $("#hum4").append("Humidity: " + response.list[0].main.humidity);
+          $("#hum4").append("Humidity: " + humidityDay4);
 
           var day5 = day4.add("days", 1);
           $("#day5").append(moment(day5).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
-          $(imageIcon1).attr("src", iconurl);
+          $(imageIcon1).attr("src", iconurl5);
           $("#icon5").append(imageIcon1);
           $("#temp5").append("Temp: " + highTempday5);
-          $("#hum5").append("Humidity: " + response.list[0].main.humidity);
+          $("#hum5").append("Humidity: " + humidityDay5);
           // iconcode = response.list[].weather[1].icon;
           // iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
