@@ -3,15 +3,33 @@ $(document).ready(function() {
   const uvIndex = 0;
   //https://api.openweathermap.org/data/2.5/forecast?q=Austin&appid=4989a668363ee1641a25c82bbed4d190
   //var city = document.querySelector(".form-control.text");
-  var storedCity = localStorage.getItem("searchedCity");
-  city = storedCity;
+  //var searchedCitynames = { name: ["Melbourne", "Sydney"] };
+  var city = "";
+  //alert("Values are:" + searchedCitynames.name[0] + searchedCitynames.name[1]);
 
-  if (city === null) {
-    city = "";
+  var storedCity = JSON.parse(localStorage.getItem("searchedCity"));
+  var noofCitiesstored;
+  var lastCitysearched;
+
+  if (storedCity === null) {
+    // lastCitysearched = searchedCitynames.name[1];
+    city = "No Data";
   } else {
-    city = localStorage.getItem("searchedCity");
+    noofCitiesstored = storedCity.name.length - 1;
+    alert("Number of cities stored are:" + noofCitiesstored);
+    alert("First value in stored CIty object is:" + storedCity.name[0]);
+
+    lastCitysearched = storedCity.name[noofCitiesstored];
+    alert("Last city searched was:" + lastCitysearched);
+    city = lastCitysearched;
   }
 
+  // if (city === null) {
+  //   city = "";
+  // } else {
+  //   city = localStorage.getItem("searchedCity");
+  // }
+  alert("VAlue of city feeding to URL is:" + city);
   var queryURL =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
@@ -63,7 +81,30 @@ $(document).ready(function() {
             "&lon=" +
             longitude;
           getUvindex(uvIndexurl);
-          localStorage.setItem("searchedCity", response.city.name);
+          // var noofCitiesstored = searchedCitynames.name.length;
+          // alert(
+          //   "Number of cities stored are within displayresult function:" +
+          //     noofCitiesstored
+          // );
+          // searchedCitynames.name[noofCitiesstored] = response.city.name;
+          //if (storedCity === null) {
+          alert("Pushing data");
+          storedCity.name.push(city);
+          localStorage.setItem("searchedCity", JSON.stringify(storedCity));
+          // }
+          // for (var i = 0; i < searchedCitynames.name.length; i++) {
+          //   alert("Length of object is: " + searchedCitynames.name.length);
+          //   alert("i is:" + i);
+          //   if (i === searchedCitynames.name.length) {
+          //     searchedCitynames.name[i] = response.city.name;
+          //     alert(
+          //       "Length of object after storing is: " +
+          //         searchedCitynames.name.length
+          //     );
+          //   }
+          // }
+
+          alert("City from Ajax is:" + response.city.name);
           $("#results").append("City: " + response.city.name + "<br>");
           $("#results").append("Date: " + response.list[0].dt_txt + "<br>");
           $("#results").append(
@@ -102,7 +143,7 @@ $(document).ready(function() {
     })
       .then(function(response) {
         var uvIndex = response[0].value;
-
+        alert("Getting UV:");
         if (uvIndex < 3) {
           //Low green
           var colorUv = $("<label>");
