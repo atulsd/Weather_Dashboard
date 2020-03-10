@@ -2,64 +2,32 @@ $(document).ready(function() {
   var apiKey = "4989a668363ee1641a25c82bbed4d190";
   const uvIndex = 0;
   var found = 0;
-  var notFound = 0;
-  //https://api.openweathermap.org/data/2.5/forecast?q=Austin&appid=4989a668363ee1641a25c82bbed4d190
-  //var city = document.querySelector(".form-control.text");
-  //var searchedCitynames = { name: ["Melbourne", "Sydney"] };
-  var city = "";
-  //alert("Values are:" + searchedCitynames.name[0] + searchedCitynames.name[1]);
-  var startWeather = localStorage.getItem("startWeather");
 
-  //alert("Start weather is:" + startWeather);
+  //https://api.openweathermap.org/data/2.5/forecast?q=Austin&appid=4989a668363ee1641a25c82bbed4d190
+  var city = "";
+  var startWeather = localStorage.getItem("startWeather");
   var storedCity = JSON.parse(localStorage.getItem("searchedCity"));
   var noofCitiesstored;
   var lastCitysearched;
 
   var loadingLocal;
   if (storedCity === null && startWeather === null) {
-    // lastCitysearched = searchedCitynames.name[1];
     localStorage.setItem("startWeather", "1");
     storedCity = { name: ["No data"] };
     localStorage.setItem("searchedCity", JSON.stringify(storedCity));
-    //city = "No Data";
   } else {
     noofCitiesstored = storedCity.name.length - 1;
-    alert("Number of cities stored are:" + noofCitiesstored);
-    alert("First value in stored CIty object is:" + storedCity.name[0]);
-
     lastCitysearched = storedCity.name[noofCitiesstored];
     var lastValue = localStorage.getItem("lastValue");
-    // for (var i = 0; i < storedCity.name.length; i++) {
-    //   if (storedCity.name[i] === city) {
-    //     found = 1;
-    //     localStorage.setItem("loadingLocal", "2");
-    // } else {
-    //   localStorage.setItem("loadingLocal", "1");
-    //   }
-    // }
-
     if (lastValue === lastCitysearched) {
-      //notFound = 1;
-      //found = 1;
       localStorage.setItem("loadingLocal", "2");
-      alert("Found at top");
-    }
-    //alert("Final found is:" + found);
-    else {
-      // if (found === 0 && notFound == 0) {
+    } else {
       localStorage.setItem("loadingLocal", "1");
     }
     localStorage.setItem("lastValue", lastCitysearched);
-    alert("Last city searched was:" + lastCitysearched);
     city = lastCitysearched;
   }
 
-  // if (city === null) {
-  //   city = "";
-  // } else {
-  //   city = localStorage.getItem("searchedCity");
-  // }
-  alert("VAlue of city feeding to URL is:" + city);
   var queryURL =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
@@ -85,46 +53,17 @@ $(document).ready(function() {
         "&appid=" +
         apiKey;
     }
-
-    //noofCitiesstored = storedCity.name.length - 1;
-    // alert("Number of cities stored are:" + noofCitiesstored);
-    // alert("First value in stored CIty object is:" + storedCity.name[0]);
-
     noofCitiesstored = storedCity.name.length - 1;
     lastCitysearched = storedCity.name[noofCitiesstored];
-    // alert("last city searched is:" + lastCitysearched);
-    // alert("City searched is:" + city);
-    // for (var i = 0; i < storedCity.name.length; i++) {
-    //   if (storedCity.name[i] === lastCitysearched) {
-    //     localStorage.setItem("loadingLocal", "2");
-    //     alert("Matched");
-    //     found = 1;
-    //   }
-    // }
-
-    // lastCitysearched = storedCity.name[noofCitiesstored];
-    // alert("last city searched is:" + lastCitysearched);
     for (var i = 0; i < storedCity.name.length; i++) {
       if (storedCity.name[i] === city) {
         localStorage.setItem("loadingLocal", "2");
-        alert("Inside button click matched");
         found = 1;
       }
     }
-    //else if() {
-    //localStorage.setItem("loadingLocal", "1");
-    //  alert("Inside button click mis-matched");
-    //break;
-    //}
-    //}
-    alert("Found is:" + found);
     if (city === lastCitysearched) {
-      //notFound = 1;
       localStorage.setItem("loadingLocal", "2");
-    }
-    //alert("Final found is:" + found);
-    else if (found === 0) {
-      // if (found === 0 && notFound == 0) {
+    } else if (found === 0) {
       localStorage.setItem("loadingLocal", "1");
     }
     localStorage.setItem("lastValue", city);
@@ -155,34 +94,11 @@ $(document).ready(function() {
             "&lon=" +
             longitude;
           getUvindex(uvIndexurl);
-          // var noofCitiesstored = searchedCitynames.name.length;
-          // alert(
-          //   "Number of cities stored are within displayresult function:" +
-          //     noofCitiesstored
-          // );
-          // searchedCitynames.name[noofCitiesstored] = response.city.name;
-          //if (storedCity === null) {
-          alert("Pushing data");
           loadingLocal = localStorage.getItem("loadingLocal");
-          alert("loading local is:" + loadingLocal);
           if (loadingLocal != 2) {
             storedCity.name.push(city);
             localStorage.setItem("searchedCity", JSON.stringify(storedCity));
           }
-          // }
-          // for (var i = 0; i < searchedCitynames.name.length; i++) {
-          //   alert("Length of object is: " + searchedCitynames.name.length);
-          //   alert("i is:" + i);
-          //   if (i === searchedCitynames.name.length) {
-          //     searchedCitynames.name[i] = response.city.name;
-          //     alert(
-          //       "Length of object after storing is: " +
-          //         searchedCitynames.name.length
-          //     );
-          //   }
-          // }
-
-          alert("City from Ajax is:" + response.city.name);
           $("#results").append("City: " + response.city.name + "<br>");
           $("#results").append("Date: " + response.list[0].dt_txt + "<br>");
           $("#results").append(
@@ -223,7 +139,6 @@ $(document).ready(function() {
     })
       .then(function(response) {
         var uvIndex = response[0].value;
-        alert("Getting UV:");
         if (uvIndex < 3) {
           //Low green
           var colorUv = $("<label>");
