@@ -129,6 +129,19 @@ $(document).ready(function() {
           $(imageIcon).attr("src", iconurl);
 
           $("#results").append(imageIcon);
+
+          var today = moment();
+          var day1 = today.add("days", 1);
+          $("#day1").append(moment(day1).format("DD/MM/YYYY"));
+          var day2 = day1.add("days", 1);
+          $("#day2").append(moment(day2).format("DD/MM/YYYY"));
+          //var day2 = moment();
+          var day3 = day2.add("days", 1);
+          $("#day3").append(moment(day3).format("DD/MM/YYYY"));
+          var day4 = day3.add("days", 1);
+          $("#day4").append(moment(day4).format("DD/MM/YYYY"));
+          var day5 = day4.add("days", 1);
+          $("#day5").append(moment(day5).format("DD/MM/YYYY"));
         }
       })
       .fail(function(response) {
