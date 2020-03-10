@@ -105,18 +105,25 @@ $(document).ready(function() {
             storedCity.name.push(city);
             localStorage.setItem("searchedCity", JSON.stringify(storedCity));
           }
-          $("#results").append("City: " + response.city.name + "<br>");
-          $("#results").append("Date: " + response.list[0].dt_txt + "<br>");
+          $("#results").append("City: " + response.city.name);
+
+          var imageIcon = $("<img>");
+          $(imageIcon).attr("src", iconurl);
+
+          $("#results").append(imageIcon);
+          //$(".icon0").append(imageIcon);
+
+          $("#results").append("<br>Date: " + response.list[0].dt_txt + "<br>");
           $("#results").append(
             "Weather Description: " +
               response.list[0].weather[0].description +
               "<br>"
           );
+          // $("#results").append(
+          //   "Icon: " + response.list[0].weather[0].icon + "<br>"
+          // );
           $("#results").append(
-            "Icon: " + response.list[0].weather[0].icon + "<br>"
-          );
-          $("#results").append(
-            "Temprature: " + response.list[0].main.temp + "<br>"
+            "Temperature: " + response.list[0].main.temp + "<br>"
           );
           $("#results").append(
             "Humidity: " + response.list[0].main.humidity + "<br>"
@@ -125,23 +132,50 @@ $(document).ready(function() {
             "Wind Speed: " + response.list[0].wind.speed + "<br>"
           );
 
-          var imageIcon = $("<img>");
-          $(imageIcon).attr("src", iconurl);
-
-          $("#results").append(imageIcon);
-
           var today = moment();
           var day1 = today.add("days", 1);
           $("#day1").append(moment(day1).format("DD/MM/YYYY"));
+          var imageIcon1 = $("<img>");
+          $(imageIcon1).attr("src", iconurl);
+          $("#icon1").append(imageIcon1);
+          $("#temp1").append("Temp: " + response.list[0].main.temp);
+          $("#hum1").append("Humidity: " + response.list[0].main.humidity);
+
           var day2 = day1.add("days", 1);
           $("#day2").append(moment(day2).format("DD/MM/YYYY"));
+          imageIcon1 = $("<img>");
+          $(imageIcon1).attr("src", iconurl);
+          $("#icon2").append(imageIcon1);
+
+          $("#temp2").append("Temp: " + response.list[0].main.temp);
+          $("#hum2").append("Humidity: " + response.list[0].main.humidity);
           //var day2 = moment();
           var day3 = day2.add("days", 1);
           $("#day3").append(moment(day3).format("DD/MM/YYYY"));
+          imageIcon1 = $("<img>");
+          $(imageIcon1).attr("src", iconurl);
+          $("#icon3").append(imageIcon1);
+          $("#temp3").append("Temp: " + response.list[0].main.temp);
+          $("#hum3").append("Humidity: " + response.list[0].main.humidity);
           var day4 = day3.add("days", 1);
           $("#day4").append(moment(day4).format("DD/MM/YYYY"));
+          imageIcon1 = $("<img>");
+          $(imageIcon1).attr("src", iconurl);
+          $("#icon4").append(imageIcon1);
+          $("#temp4").append("Temp: " + response.list[0].main.temp);
+          $("#hum4").append("Humidity: " + response.list[0].main.humidity);
           var day5 = day4.add("days", 1);
           $("#day5").append(moment(day5).format("DD/MM/YYYY"));
+          imageIcon1 = $("<img>");
+          $(imageIcon1).attr("src", iconurl);
+          $("#icon5").append(imageIcon1);
+          $("#temp5").append("Temp: " + response.list[0].main.temp);
+          $("#hum5").append("Humidity: " + response.list[0].main.humidity);
+          // iconcode = response.list[].weather[1].icon;
+          // iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+
+          // $("#temp1").append("Temp: " + response.list[0].main.temp);
+          // $("#hum1").append("Humidity: " + response.list[0].main.humidity);
         }
       })
       .fail(function(response) {
