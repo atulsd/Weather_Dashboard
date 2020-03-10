@@ -26,15 +26,16 @@ $(document).ready(function() {
     city = $(".form-control").val();
     if (city === "") {
       alert("Please enter a city.");
+    } else {
+      var cityList = $("<li>");
+      cityList.append(city);
+      $(".list-group").append(cityList);
+      queryURL =
+        "https://api.openweathermap.org/data/2.5/forecast?q=" +
+        city +
+        "&appid=" +
+        apiKey;
     }
-    var cityList = $("<li>");
-    cityList.append(city);
-    $(".list-group").append(cityList);
-    queryURL =
-      "https://api.openweathermap.org/data/2.5/forecast?q=" +
-      city +
-      "&appid=" +
-      apiKey;
     callAjax();
   });
 
