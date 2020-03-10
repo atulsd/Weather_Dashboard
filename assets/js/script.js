@@ -16,6 +16,12 @@ $(document).ready(function() {
     storedCity = { name: ["No data"] };
     localStorage.setItem("searchedCity", JSON.stringify(storedCity));
   } else {
+    for (var i = 0; i < storedCity.name.length; i++) {
+      var cityList = $("<li>");
+      cityList.append(storedCity.name[i]);
+      $(".list-group").append(cityList);
+    }
+
     noofCitiesstored = storedCity.name.length - 1;
     lastCitysearched = storedCity.name[noofCitiesstored];
     var lastValue = localStorage.getItem("lastValue");
