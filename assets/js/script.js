@@ -126,9 +126,11 @@ $(document).ready(function() {
           var highTemp = 0;
           highTemp = response.list[0].main.temp;
           var checkTemp = 0;
+          var checkHumi = 0;
+
           var currentTime = response.list[0].dt_txt;
           var checkTime = currentTime[11] + currentTime[12];
-          alert("Check time is:" + checkTime);
+          //alert("Check time is:" + checkTime);
           var loopTime = 0;
           if (checkTime === "00") {
             loopTime = 8;
@@ -148,17 +150,101 @@ $(document).ready(function() {
             loopTime = 1;
           }
 
-          alert(currentTime[11]);
-          alert(currentTime[12]);
-
+          //alert(currentTime[11]);
+          //alert(currentTime[12]);
+          var looped = 0;
           for (var i = 0; i < loopTime; i++) {
             checkTemp = response.list[i].main.temp;
+            checkHumi = response.list[i].main.humidity;
             alert("Check temp is:" + checkTemp);
             alert("looptime is:" + loopTime);
             if (highTemp < checkTemp) {
               highTemp = checkTemp;
             }
+            looped++;
           }
+          //loopTime = 40 - loopTime;
+          day1Looptime = loopTime + 8;
+          day2Looptime = day1Looptime + 8;
+          day3Looptime = day2Looptime + 8;
+          day4Looptime = day3Looptime + 8;
+          day5Looptime = 40;
+
+          //alert("Total loop time left:" + loopTime);
+          alert("Looped already:" + looped);
+          var highTempday1 = 0;
+          var humidityDay1 = 0;
+          for (var i = looped; i < day1Looptime; i++) {
+            //alert("Value of i is:" + i);
+            checkTemp = response.list[i].main.temp;
+            checkHumi = response.list[i].main.humidity;
+            //alert("Check temp is:" + checkTemp);
+            //alert("looptime is:" + loopTime);
+            if (highTempday1 < checkTemp) {
+              highTempday1 = checkTemp;
+            }
+            looped++;
+          }
+          alert("Value of looped after day1:" + looped);
+          var highTempday2 = 0;
+          var humidityDay2 = 0;
+          for (var i = looped; i < day2Looptime; i++) {
+            //alert("Value of i is:" + i);
+            checkTemp = response.list[i].main.temp;
+            checkHumi = response.list[i].main.humidity;
+            //alert("Check temp is:" + checkTemp);
+            //alert("looptime is:" + loopTime);
+            if (highTempday2 < checkTemp) {
+              highTempday2 = checkTemp;
+            }
+            looped++;
+          }
+          alert("Value of looped after day2:" + looped);
+
+          var highTempday3 = 0;
+          var humidityDay3 = 0;
+          for (var i = looped; i < day3Looptime; i++) {
+            //alert("Value of i is:" + i);
+            checkTemp = response.list[i].main.temp;
+            checkHumi = response.list[i].main.humidity;
+            //alert("Check temp is:" + checkTemp);
+            //alert("looptime is:" + loopTime);
+            if (highTempday3 < checkTemp) {
+              highTempday3 = checkTemp;
+            }
+            looped++;
+          }
+          alert("Value of looped after day3:" + looped);
+
+          var highTempday4 = 0;
+          var humidityDay4 = 0;
+          for (var i = looped; i < day4Looptime; i++) {
+            //alert("Value of i is:" + i);
+            checkTemp = response.list[i].main.temp;
+            checkHumi = response.list[i].main.humidity;
+            //alert("Check temp is:" + checkTemp);
+            //alert("looptime is:" + loopTime);
+            if (highTempday4 < checkTemp) {
+              highTempday4 = checkTemp;
+            }
+            looped++;
+          }
+          alert("Value of looped after day4:" + looped);
+
+          var highTempday5 = 0;
+          var humidityDay5 = 0;
+          for (var i = looped; i < day5Looptime; i++) {
+            //alert("Value of i is:" + i);
+            checkTemp = response.list[i].main.temp;
+            checkHumi = response.list[i].main.humidity;
+            //alert("Check temp is:" + checkTemp);
+            //alert("looptime is:" + loopTime);
+            if (highTempday5 < checkTemp) {
+              highTempday5 = checkTemp;
+            }
+            looped++;
+          }
+          alert("Value of looped after day5:" + looped);
 
           $("#results").append("Temperature: " + highTemp + "<br>");
           $("#results").append(
@@ -174,7 +260,7 @@ $(document).ready(function() {
           var imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl);
           $("#icon1").append(imageIcon1);
-          $("#temp1").append("Temp: " + response.list[0].main.temp);
+          $("#temp1").append("Temp: " + highTempday1);
           $("#hum1").append("Humidity: " + response.list[0].main.humidity);
 
           var day2 = day1.add("days", 1);
@@ -183,7 +269,7 @@ $(document).ready(function() {
           $(imageIcon1).attr("src", iconurl);
           $("#icon2").append(imageIcon1);
 
-          $("#temp2").append("Temp: " + response.list[0].main.temp);
+          $("#temp2").append("Temp: " + highTempday2);
           $("#hum2").append("Humidity: " + response.list[0].main.humidity);
 
           //var day2 = moment();
@@ -192,7 +278,7 @@ $(document).ready(function() {
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl);
           $("#icon3").append(imageIcon1);
-          $("#temp3").append("Temp: " + response.list[0].main.temp);
+          $("#temp3").append("Temp: " + highTempday3);
           $("#hum3").append("Humidity: " + response.list[0].main.humidity);
 
           var day4 = day3.add("days", 1);
@@ -200,7 +286,7 @@ $(document).ready(function() {
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl);
           $("#icon4").append(imageIcon1);
-          $("#temp4").append("Temp: " + response.list[0].main.temp);
+          $("#temp4").append("Temp: " + highTempday4);
           $("#hum4").append("Humidity: " + response.list[0].main.humidity);
 
           var day5 = day4.add("days", 1);
@@ -208,50 +294,50 @@ $(document).ready(function() {
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl);
           $("#icon5").append(imageIcon1);
-          $("#temp5").append("Temp: " + response.list[0].main.temp);
+          $("#temp5").append("Temp: " + highTempday5);
           $("#hum5").append("Humidity: " + response.list[0].main.humidity);
           // iconcode = response.list[].weather[1].icon;
           // iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
           // $("#temp1").append("Temp: " + response.list[0].main.temp);
           // $("#hum1").append("Humidity: " + response.list[0].main.humidity);
-          alert("date is" + response.list[1].dt_txt);
-          var highTemp = 0;
-          highTemp = response.list[0].main.temp;
-          var checkTemp = 0;
-          var currentTime = response.list[0].dt_txt;
-          var checkTime = currentTime[11] + currentTime[12];
-          alert("Check time is:" + checkTime);
-          var loopTime = 0;
-          if (checkTime === "00") {
-            loopTime = 8;
-          } else if (checkTime === "03") {
-            loopTime = 7;
-          } else if (checkTime === "06") {
-            loopTime = 6;
-          } else if (checkTime === "09") {
-            loopTime = 5;
-          } else if (checkTime === "12") {
-            loopTime = 4;
-          } else if (checkTime === "15") {
-            loopTime = 3;
-          } else if (checkTime === "18") {
-            loopTime = 2;
-          } else if (checkTime === "21") {
-            loopTime = 1;
-          }
+          // alert("date is" + response.list[1].dt_txt);
+          // var highTemp = 0;
+          // highTemp = response.list[0].main.temp;
+          // var checkTemp = 0;
+          // var currentTime = response.list[0].dt_txt;
+          // var checkTime = currentTime[11] + currentTime[12];
+          // alert("Check time is:" + checkTime);
+          // var loopTime = 0;
+          // if (checkTime === "00") {
+          //   loopTime = 8;
+          // } else if (checkTime === "03") {
+          //   loopTime = 7;
+          // } else if (checkTime === "06") {
+          //   loopTime = 6;
+          // } else if (checkTime === "09") {
+          //   loopTime = 5;
+          // } else if (checkTime === "12") {
+          //   loopTime = 4;
+          // } else if (checkTime === "15") {
+          //   loopTime = 3;
+          // } else if (checkTime === "18") {
+          //   loopTime = 2;
+          // } else if (checkTime === "21") {
+          //   loopTime = 1;
+          // }
 
-          alert(currentTime[11]);
-          alert(currentTime[12]);
+          // alert(currentTime[11]);
+          // alert(currentTime[12]);
 
-          for (var i = 0; i < loopTime; i++) {
-            checkTemp = response.list[i].main.temp;
-            alert("Check temp is:" + checkTemp);
-            alert("looptime is:" + loopTime);
-            if (highTemp < checkTemp) {
-              highTemp = checkTemp;
-            }
-          }
+          // for (var i = 0; i < loopTime; i++) {
+          //   checkTemp = response.list[i].main.temp;
+          //   alert("Check temp is:" + checkTemp);
+          //   alert("looptime is:" + loopTime);
+          //   if (highTemp < checkTemp) {
+          //     highTemp = checkTemp;
+          //   }
+          // }
           //alert("Highest temp is:" + highTemp);
           //alert("Temperature is:" + response.list[1].main.temp);
         }
