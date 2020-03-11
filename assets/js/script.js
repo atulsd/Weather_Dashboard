@@ -266,7 +266,7 @@ $(document).ready(function() {
 
           var fahrenheit = (highTemp - 273.15) * 1.8 + 32;
           $("#results").append(
-            "Temperature: " + fahrenheit.toFixed(2) + "<br>"
+            "Temperature: " + fahrenheit.toFixed(2) + " &#8457;" + "<br>"
           );
           $("#results").append("Humidity: " + highHumi + "%" + "<br>");
           $("#results").append(
@@ -280,7 +280,7 @@ $(document).ready(function() {
           var imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl1);
           $("#icon1").append(imageIcon1);
-          $("#temp1").text("Temp: " + fahrenheit.toFixed(2));
+          $("#temp1").append("Temp: " + fahrenheit.toFixed(2) + " &#8457;");
           $("#hum1").text("Humidity: " + humidityDay1 + "%");
 
           fahrenheit = (highTempday2 - 273.15) * 1.8 + 32;
@@ -288,7 +288,7 @@ $(document).ready(function() {
           $("#day2").text(moment(day2).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl2);
-          $("#temp2").text("Temp: " + fahrenheit.toFixed(2));
+          $("#temp2").append("Temp: " + fahrenheit.toFixed(2) + " &#8457;");
           $("#hum2").text("Humidity: " + humidityDay2 + "%");
           $("#icon2").append(imageIcon1);
 
@@ -298,7 +298,7 @@ $(document).ready(function() {
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl3);
           $("#icon3").append(imageIcon1);
-          $("#temp3").text("Temp: " + fahrenheit.toFixed(2));
+          $("#temp3").append("Temp: " + fahrenheit.toFixed(2) + " &#8457;");
           $("#hum3").text("Humidity: " + humidityDay3 + "%");
 
           fahrenheit = (highTempday4 - 273.15) * 1.8 + 32;
@@ -307,7 +307,7 @@ $(document).ready(function() {
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl4);
           $("#icon4").append(imageIcon1);
-          $("#temp4").text("Temp: " + fahrenheit.toFixed(2));
+          $("#temp4").append("Temp: " + fahrenheit.toFixed(2) + " &#8457;");
           $("#hum4").text("Humidity: " + humidityDay4 + "%");
 
           fahrenheit = (highTempday5 - 273.15) * 1.8 + 32;
@@ -316,7 +316,7 @@ $(document).ready(function() {
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl5);
           $("#icon5").append(imageIcon1);
-          $("#temp5").text("Temp: " + fahrenheit.toFixed(2));
+          $("#temp5").append("Temp: " + fahrenheit.toFixed(2) + " &#8457;");
           $("#hum5").text("Humidity: " + humidityDay5 + "%");
         }
       })
