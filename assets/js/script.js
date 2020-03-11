@@ -332,6 +332,26 @@ $(document).ready(function() {
       })
       .fail(function(response) {
         $("#results").append("<h1>No data found.<br>");
+        $("#icon1").text("");
+        $("#temp1").text("");
+        $("#day1").text("No Data");
+        $("#hum1").text("");
+        $("#icon2").text("");
+        $("#temp2").text("");
+        $("#day2").text("No Data");
+        $("#hum2").text("");
+        $("#icon3").text("");
+        $("#temp3").text("");
+        $("#day3").text("No Data");
+        $("#hum3").text("");
+        $("#icon4").text("");
+        $("#temp4").text("");
+        $("#day4").text("No Data");
+        $("#hum4").text("");
+        $("#icon5").text("");
+        $("#temp5").text("");
+        $("#day5").text("No Data");
+        $("#hum5").text("");
         storedCity.name.push(city);
         localStorage.setItem("searchedCity", JSON.stringify(storedCity));
       });
