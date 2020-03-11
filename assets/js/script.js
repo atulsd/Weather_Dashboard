@@ -267,7 +267,7 @@ $(document).ready(function() {
           $("#results").append("Temperature: " + highTemp + "<br>");
           $("#results").append("Humidity: " + highHumi + "%" + "<br>");
           $("#results").append(
-            "Wind Speed: " + response.list[0].wind.speed + "<br>"
+            "Wind Speed: " + response.list[0].wind.speed + " MPH" + "<br>"
           );
 
           var today = moment();
