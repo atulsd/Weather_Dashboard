@@ -15,10 +15,23 @@
 .form-control {
   margin-left: 10px;
 }
+
 .card1,
 .card2,
 .card3,
 .card4,
 .card5 {
   margin-left: 10px;
+}
+
+.card-body1 {
+  margin-left: 0px;
+}
+
+#results {
+  padding-left: 10px;
+}
+
+#mainTitle {
+  padding-top: 20px;
 }
