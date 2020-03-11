@@ -123,6 +123,9 @@ $(document).ready(function() {
             if (i > 7 && i < 10) getDate += displayDate[i];
           }
           var changeDateformat = getDate + "/" + month + "/" + year;
+          $("#setName").text("");
+          $("#setDate").text("");
+          $("#setIcon").text("");
 
           $("#setName").append("<h3>" + response.city.name);
           $("#setDate").append("<h3>(" + changeDateformat + ")");
@@ -334,6 +337,9 @@ $(document).ready(function() {
       })
       .fail(function(response) {
         $("#results").append("<h1>No data found.<br>");
+        $("#setName").text("");
+        $("#setDate").text("");
+        $("#setIcon").text("");
         $("#icon1").text("");
         $("#temp1").text("");
         $("#day1").text("No Data");
