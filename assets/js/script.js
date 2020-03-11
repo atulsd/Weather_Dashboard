@@ -109,12 +109,10 @@ $(document).ready(function() {
             storedCity.name.push(city);
             localStorage.setItem("searchedCity", JSON.stringify(storedCity));
           }
-          $("#results").append("<h1>" + response.city.name);
 
           var imageIcon = $("<img>");
           $(imageIcon).attr("src", iconurl);
 
-          $("#results").append(imageIcon);
           var displayDate = response.list[0].dt_txt;
           var getDate = "";
           var year = "";
@@ -126,7 +124,10 @@ $(document).ready(function() {
           }
           var changeDateformat = getDate + "/" + month + "/" + year;
 
-          $("#results").append("<h1>" + changeDateformat);
+          $("#setName").append("<h3>" + response.city.name);
+          $("#setDate").append("<h3>(" + changeDateformat + ")");
+          $("#setIcon").append(imageIcon);
+
           $("#results").append(
             "Weather Description: " +
               response.list[0].weather[0].description +
