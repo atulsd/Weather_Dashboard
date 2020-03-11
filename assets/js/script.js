@@ -264,51 +264,59 @@ $(document).ready(function() {
           }
           var iconurl5 = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
-          $("#results").append("Temperature: " + highTemp + "<br>");
+          var fahrenheit = (highTemp - 273.15) * 1.8 + 32;
+          $("#results").append(
+            "Temperature: " + fahrenheit.toFixed(2) + "<br>"
+          );
           $("#results").append("Humidity: " + highHumi + "%" + "<br>");
           $("#results").append(
             "Wind Speed: " + response.list[0].wind.speed + " MPH" + "<br>"
           );
 
+          fahrenheit = (highTempday1 - 273.15) * 1.8 + 32;
           var today = moment();
           var day1 = today.add("days", 1);
           $("#day1").text(moment(day1).format("DD/MM/YYYY"));
           var imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl1);
           $("#icon1").append(imageIcon1);
-          $("#temp1").text("Temp: " + highTempday1);
+          $("#temp1").text("Temp: " + fahrenheit.toFixed(2));
           $("#hum1").text("Humidity: " + humidityDay1 + "%");
 
+          fahrenheit = (highTempday2 - 273.15) * 1.8 + 32;
           var day2 = day1.add("days", 1);
           $("#day2").text(moment(day2).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl2);
-          $("#temp2").text("Temp: " + highTempday2);
+          $("#temp2").text("Temp: " + fahrenheit.toFixed(2));
           $("#hum2").text("Humidity: " + humidityDay2 + "%");
           $("#icon2").append(imageIcon1);
 
+          fahrenheit = (highTempday3 - 273.15) * 1.8 + 32;
           var day3 = day2.add("days", 1);
           $("#day3").text(moment(day3).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl3);
           $("#icon3").append(imageIcon1);
-          $("#temp3").text("Temp: " + highTempday3);
+          $("#temp3").text("Temp: " + fahrenheit.toFixed(2));
           $("#hum3").text("Humidity: " + humidityDay3 + "%");
 
+          fahrenheit = (highTempday4 - 273.15) * 1.8 + 32;
           var day4 = day3.add("days", 1);
           $("#day4").text(moment(day4).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl4);
           $("#icon4").append(imageIcon1);
-          $("#temp4").text("Temp: " + highTempday4);
+          $("#temp4").text("Temp: " + fahrenheit.toFixed(2));
           $("#hum4").text("Humidity: " + humidityDay4 + "%");
 
+          fahrenheit = (highTempday5 - 273.15) * 1.8 + 32;
           var day5 = day4.add("days", 1);
           $("#day5").text(moment(day5).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl5);
           $("#icon5").append(imageIcon1);
-          $("#temp5").text("Temp: " + highTempday5);
+          $("#temp5").text("Temp: " + fahrenheit.toFixed(2));
           $("#hum5").text("Humidity: " + humidityDay5 + "%");
         }
       })
