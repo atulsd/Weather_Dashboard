@@ -46,7 +46,7 @@ $(document).ready(function() {
     found = 0;
     event.preventDefault();
     $("#results").empty();
-    $("#container1").empty();
+    //$(".container1").empty();
     city = $(".form-control").val();
     if (city === "") {
       alert("Please enter a city.");
@@ -87,6 +87,8 @@ $(document).ready(function() {
         displayResult();
 
         function displayResult() {
+          $("#results").empty();
+
           var iconcode = response.list[0].weather[0].icon;
           var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
           var longitude = response.city.coord.lon;
@@ -106,23 +108,35 @@ $(document).ready(function() {
             storedCity.name.push(city);
             localStorage.setItem("searchedCity", JSON.stringify(storedCity));
           }
-          $("#results").append("City: " + response.city.name);
+          $("#results").append("<h1>" + response.city.name);
 
           var imageIcon = $("<img>");
           $(imageIcon).attr("src", iconurl);
 
           $("#results").append(imageIcon);
-          //$(".icon0").append(imageIcon);
+          var displayDate = response.list[0].dt_txt;
+          var getDate = "";
+          var year = "";
+          var month = "";
+          for (var i = 0; i < 10; i++) {
+            if (i < 4) year += displayDate[i];
+            if (i > 4 && i < 7) month += displayDate[i];
+            if (i > 7 && i < 10) getDate += displayDate[i];
+          }
+          var changeDateformat = getDate + "/" + month + "/" + year;
 
-          $("#results").append("<br>Date: " + response.list[0].dt_txt + "<br>");
+          alert("day is: " + getDate);
+          alert("month is:" + month);
+          alert("year is:" + year);
+          alert("Changed date is:" + changeDateformat);
+
+          $("#results").append("<h1>" + changeDateformat);
           $("#results").append(
             "Weather Description: " +
               response.list[0].weather[0].description +
               "<br>"
           );
-          // $("#results").append(
-          //   "Icon: " + response.list[0].weather[0].icon + "<br>"
-          // );
+
           var highTemp = 0;
           highTemp = response.list[0].main.temp;
 
@@ -131,7 +145,6 @@ $(document).ready(function() {
 
           var currentTime = response.list[0].dt_txt;
           var checkTime = currentTime[11] + currentTime[12];
-          //alert("Check time is:" + checkTime);
           var loopTime = 0;
           if (checkTime === "00") {
             loopTime = 8;
@@ -151,21 +164,15 @@ $(document).ready(function() {
             loopTime = 1;
           }
 
-          //alert(currentTime[11]);
-          //alert(currentTime[12]);
           iconcode = response.list[0].weather[0].icon;
           iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-
           var highHumi = 0;
           highHumi = response.list[0].main.humidity;
-
           var looped = 0;
           for (var i = 0; i < loopTime; i++) {
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
             iconcode = response.list[i].weather[0].icon;
-            alert("Check temp is:" + checkTemp);
-            alert("looptime is:" + loopTime);
             if (highTemp < checkTemp) {
               highTemp = checkTemp;
             }
@@ -174,25 +181,20 @@ $(document).ready(function() {
             }
             looped++;
           }
+
           iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-          //loopTime = 40 - loopTime;
           day1Looptime = loopTime + 8;
           day2Looptime = day1Looptime + 8;
           day3Looptime = day2Looptime + 8;
           day4Looptime = day3Looptime + 8;
           day5Looptime = 40;
 
-          //alert("Total loop time left:" + loopTime);
-          alert("Looped already:" + looped);
           var highTempday1 = 0;
           var humidityDay1 = 0;
           for (var i = looped; i < day1Looptime; i++) {
-            //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
             iconcode = response.list[i].weather[0].icon;
-            //alert("Check temp is:" + checkTemp);
-            //alert("looptime is:" + loopTime);
             if (highTempday1 < checkTemp) {
               highTempday1 = checkTemp;
             }
@@ -201,17 +203,14 @@ $(document).ready(function() {
             }
             looped++;
           }
+
           var iconurl1 = "http://openweathermap.org/img/w/" + iconcode + ".png";
-          alert("Value of looped after day1:" + looped);
           var highTempday2 = 0;
           var humidityDay2 = 0;
           for (var i = looped; i < day2Looptime; i++) {
-            //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
             iconcode = response.list[i].weather[0].icon;
-            //alert("Check temp is:" + checkTemp);
-            //alert("looptime is:" + loopTime);
             if (highTempday2 < checkTemp) {
               highTempday2 = checkTemp;
             }
@@ -220,18 +219,14 @@ $(document).ready(function() {
             }
             looped++;
           }
-          var iconurl2 = "http://openweathermap.org/img/w/" + iconcode + ".png";
-          alert("Value of looped after day2:" + looped);
 
+          var iconurl2 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           var highTempday3 = 0;
           var humidityDay3 = 0;
           for (var i = looped; i < day3Looptime; i++) {
-            //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
             iconcode = response.list[i].weather[0].icon;
-            //alert("Check temp is:" + checkTemp);
-            //alert("looptime is:" + loopTime);
             if (highTempday3 < checkTemp) {
               highTempday3 = checkTemp;
             }
@@ -240,18 +235,14 @@ $(document).ready(function() {
             }
             looped++;
           }
-          var iconurl3 = "http://openweathermap.org/img/w/" + iconcode + ".png";
-          alert("Value of looped after day3:" + looped);
 
+          var iconurl3 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           var highTempday4 = 0;
           var humidityDay4 = 0;
           for (var i = looped; i < day4Looptime; i++) {
-            //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
             iconcode = response.list[i].weather[0].icon;
-            //alert("Check temp is:" + checkTemp);
-            //alert("looptime is:" + loopTime);
             if (highTempday4 < checkTemp) {
               highTempday4 = checkTemp;
             }
@@ -260,18 +251,14 @@ $(document).ready(function() {
             }
             looped++;
           }
-          var iconurl4 = "http://openweathermap.org/img/w/" + iconcode + ".png";
-          alert("Value of looped after day4:" + looped);
 
+          var iconurl4 = "http://openweathermap.org/img/w/" + iconcode + ".png";
           var highTempday5 = 0;
           var humidityDay5 = 0;
           for (var i = looped; i < day5Looptime; i++) {
-            //alert("Value of i is:" + i);
             checkTemp = response.list[i].main.temp;
             checkHumi = response.list[i].main.humidity;
             iconcode = response.list[i].weather[0].icon;
-            //alert("Check temp is:" + checkTemp);
-            //alert("looptime is:" + loopTime);
             if (highTempday5 < checkTemp) {
               highTempday5 = checkTemp;
             }
@@ -281,7 +268,6 @@ $(document).ready(function() {
             looped++;
           }
           var iconurl5 = "http://openweathermap.org/img/w/" + iconcode + ".png";
-          alert("Value of looped after day5:" + looped);
 
           $("#results").append("Temperature: " + highTemp + "<br>");
           $("#results").append("Humidity: " + highHumi + "<br>");
@@ -290,91 +276,45 @@ $(document).ready(function() {
           );
 
           var today = moment();
-          var day1 = today.add("days", 0);
-          $("#day1").append(moment(day1).format("DD/MM/YYYY"));
+          var day1 = today.add("days", 1);
+          $("#day1").text(moment(day1).format("DD/MM/YYYY"));
           var imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl1);
           $("#icon1").append(imageIcon1);
-          $("#temp1").append("Temp: " + highTempday1);
-          $("#hum1").append("Humidity: " + humidityDay1);
+          $("#temp1").text("Temp: " + highTempday1);
+          $("#hum1").text("Humidity: " + humidityDay1);
 
           var day2 = day1.add("days", 1);
-          $("#day2").append(moment(day2).format("DD/MM/YYYY"));
+          $("#day2").text(moment(day2).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl2);
+          $("#temp2").text("Temp: " + highTempday2);
+          $("#hum2").text("Humidity: " + humidityDay2);
           $("#icon2").append(imageIcon1);
 
-          $("#temp2").append("Temp: " + highTempday2);
-          $("#hum2").append("Humidity: " + humidityDay2);
-
-          //var day2 = moment();
           var day3 = day2.add("days", 1);
-          $("#day3").append(moment(day3).format("DD/MM/YYYY"));
+          $("#day3").text(moment(day3).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl3);
           $("#icon3").append(imageIcon1);
-          $("#temp3").append("Temp: " + highTempday3);
-          $("#hum3").append("Humidity: " + humidityDay3);
+          $("#temp3").text("Temp: " + highTempday3);
+          $("#hum3").text("Humidity: " + humidityDay3);
 
           var day4 = day3.add("days", 1);
-          $("#day4").append(moment(day4).format("DD/MM/YYYY"));
+          $("#day4").text(moment(day4).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl4);
           $("#icon4").append(imageIcon1);
-          $("#temp4").append("Temp: " + highTempday4);
-          $("#hum4").append("Humidity: " + humidityDay4);
+          $("#temp4").text("Temp: " + highTempday4);
+          $("#hum4").text("Humidity: " + humidityDay4);
 
           var day5 = day4.add("days", 1);
-          $("#day5").append(moment(day5).format("DD/MM/YYYY"));
+          $("#day5").text(moment(day5).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl5);
           $("#icon5").append(imageIcon1);
-          $("#temp5").append("Temp: " + highTempday5);
-          $("#hum5").append("Humidity: " + humidityDay5);
-          // iconcode = response.list[].weather[1].icon;
-          // iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-
-          // $("#temp1").append("Temp: " + response.list[0].main.temp);
-          // $("#hum1").append("Humidity: " + response.list[0].main.humidity);
-          // alert("date is" + response.list[1].dt_txt);
-          // var highTemp = 0;
-          // highTemp = response.list[0].main.temp;
-          // var checkTemp = 0;
-          // var currentTime = response.list[0].dt_txt;
-          // var checkTime = currentTime[11] + currentTime[12];
-          // alert("Check time is:" + checkTime);
-          // var loopTime = 0;
-          // if (checkTime === "00") {
-          //   loopTime = 8;
-          // } else if (checkTime === "03") {
-          //   loopTime = 7;
-          // } else if (checkTime === "06") {
-          //   loopTime = 6;
-          // } else if (checkTime === "09") {
-          //   loopTime = 5;
-          // } else if (checkTime === "12") {
-          //   loopTime = 4;
-          // } else if (checkTime === "15") {
-          //   loopTime = 3;
-          // } else if (checkTime === "18") {
-          //   loopTime = 2;
-          // } else if (checkTime === "21") {
-          //   loopTime = 1;
-          // }
-
-          // alert(currentTime[11]);
-          // alert(currentTime[12]);
-
-          // for (var i = 0; i < loopTime; i++) {
-          //   checkTemp = response.list[i].main.temp;
-          //   alert("Check temp is:" + checkTemp);
-          //   alert("looptime is:" + loopTime);
-          //   if (highTemp < checkTemp) {
-          //     highTemp = checkTemp;
-          //   }
-          // }
-          //alert("Highest temp is:" + highTemp);
-          //alert("Temperature is:" + response.list[1].main.temp);
+          $("#temp5").text("Temp: " + highTempday5);
+          $("#hum5").text("Humidity: " + humidityDay5);
         }
       })
       .fail(function(response) {
