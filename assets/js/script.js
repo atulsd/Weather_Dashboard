@@ -17,9 +17,11 @@ $(document).ready(function() {
     localStorage.setItem("searchedCity", JSON.stringify(storedCity));
   } else {
     for (var i = 0; i < storedCity.name.length; i++) {
-      var cityList = $("<li>");
-      cityList.append(storedCity.name[i]);
-      $(".list-group").append(cityList);
+      if (storedCity.name[i] != "" && storedCity.name[i] != "No data") {
+        var cityList = $("<li>");
+        cityList.append(storedCity.name[i]);
+        $(".list-group").append(cityList);
+      }
     }
 
     noofCitiesstored = storedCity.name.length - 1;
@@ -46,7 +48,6 @@ $(document).ready(function() {
     found = 0;
     event.preventDefault();
     $("#results").empty();
-    //$(".container1").empty();
     city = $(".form-control").val();
     if (city === "") {
       alert("Please enter a city.");
