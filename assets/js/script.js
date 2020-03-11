@@ -272,6 +272,16 @@ $(document).ready(function() {
           $("#results").append(
             "Wind Speed: " + response.list[0].wind.speed + " MPH" + "<br>"
           );
+          $("#icon1").text("");
+          $("#temp1").text("");
+          $("#icon2").text("");
+          $("#temp2").text("");
+          $("#icon3").text("");
+          $("#temp3").text("");
+          $("#icon4").text("");
+          $("#temp4").text("");
+          $("#icon5").text("");
+          $("#temp5").text("");
 
           fahrenheit = (highTempday1 - 273.15) * 1.8 + 32;
           var today = moment();
