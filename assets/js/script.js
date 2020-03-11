@@ -125,11 +125,6 @@ $(document).ready(function() {
           }
           var changeDateformat = getDate + "/" + month + "/" + year;
 
-          alert("day is: " + getDate);
-          alert("month is:" + month);
-          alert("year is:" + year);
-          alert("Changed date is:" + changeDateformat);
-
           $("#results").append("<h1>" + changeDateformat);
           $("#results").append(
             "Weather Description: " +
@@ -270,7 +265,7 @@ $(document).ready(function() {
           var iconurl5 = "http://openweathermap.org/img/w/" + iconcode + ".png";
 
           $("#results").append("Temperature: " + highTemp + "<br>");
-          $("#results").append("Humidity: " + highHumi + "<br>");
+          $("#results").append("Humidity: " + highHumi + "%" + "<br>");
           $("#results").append(
             "Wind Speed: " + response.list[0].wind.speed + "<br>"
           );
@@ -282,14 +277,14 @@ $(document).ready(function() {
           $(imageIcon1).attr("src", iconurl1);
           $("#icon1").append(imageIcon1);
           $("#temp1").text("Temp: " + highTempday1);
-          $("#hum1").text("Humidity: " + humidityDay1);
+          $("#hum1").text("Humidity: " + humidityDay1 + "%");
 
           var day2 = day1.add("days", 1);
           $("#day2").text(moment(day2).format("DD/MM/YYYY"));
           imageIcon1 = $("<img>");
           $(imageIcon1).attr("src", iconurl2);
           $("#temp2").text("Temp: " + highTempday2);
-          $("#hum2").text("Humidity: " + humidityDay2);
+          $("#hum2").text("Humidity: " + humidityDay2 + "%");
           $("#icon2").append(imageIcon1);
 
           var day3 = day2.add("days", 1);
@@ -298,7 +293,7 @@ $(document).ready(function() {
           $(imageIcon1).attr("src", iconurl3);
           $("#icon3").append(imageIcon1);
           $("#temp3").text("Temp: " + highTempday3);
-          $("#hum3").text("Humidity: " + humidityDay3);
+          $("#hum3").text("Humidity: " + humidityDay3 + "%");
 
           var day4 = day3.add("days", 1);
           $("#day4").text(moment(day4).format("DD/MM/YYYY"));
@@ -306,7 +301,7 @@ $(document).ready(function() {
           $(imageIcon1).attr("src", iconurl4);
           $("#icon4").append(imageIcon1);
           $("#temp4").text("Temp: " + highTempday4);
-          $("#hum4").text("Humidity: " + humidityDay4);
+          $("#hum4").text("Humidity: " + humidityDay4 + "%");
 
           var day5 = day4.add("days", 1);
           $("#day5").text(moment(day5).format("DD/MM/YYYY"));
@@ -314,7 +309,7 @@ $(document).ready(function() {
           $(imageIcon1).attr("src", iconurl5);
           $("#icon5").append(imageIcon1);
           $("#temp5").text("Temp: " + highTempday5);
-          $("#hum5").text("Humidity: " + humidityDay5);
+          $("#hum5").text("Humidity: " + humidityDay5 + "%");
         }
       })
       .fail(function(response) {
