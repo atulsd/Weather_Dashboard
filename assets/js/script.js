@@ -18,9 +18,9 @@ $(document).ready(function() {
   } else {
     for (var i = 0; i < storedCity.name.length; i++) {
       if (storedCity.name[i] != "" && storedCity.name[i] != "No data") {
-        var cityList = $("<li>");
-        cityList.append(storedCity.name[i]);
-        $(".list-group").append(cityList);
+        var cityList = $("<li>").addClass("list-group-item");
+        cityList.text(storedCity.name[i]);
+        $("#search-history").append(cityList);
       }
     }
 
@@ -52,9 +52,9 @@ $(document).ready(function() {
     if (city === "") {
       alert("Please enter a city.");
     } else {
-      var cityList = $("<li>");
-      cityList.append(city);
-      $(".list-group").append(cityList);
+      var cityList = $("<li>").addClass("list-group-item");
+      cityList.text(city);
+      $("#search-history").append(cityList);
       queryURL =
         "https://api.openweathermap.org/data/2.5/forecast?q=" +
         city +
