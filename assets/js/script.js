@@ -3,7 +3,6 @@ $(document).ready(function() {
   const uvIndex = 0;
   var found = 0;
 
-  //https://api.openweathermap.org/data/2.5/forecast?q=Austin&appid=4989a668363ee1641a25c82bbed4d190
   var city = "";
   var startWeather = localStorage.getItem("startWeather");
   var storedCity = JSON.parse(localStorage.getItem("searchedCity"));
