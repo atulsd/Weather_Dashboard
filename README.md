@@ -18,7 +18,7 @@ Table of Contents:
 
 ## Description:
 
-This project is about building a weather dashboard with form inputs. Data is fetched using API key and required data is displayed accessing via certain parameteres.
+This project is about building a weather dashboard with form inputs. Data is fetched using API key and required data is displayed accessing via name of the city.
 
 # StepsTaken:
 
@@ -38,7 +38,7 @@ https://atulsd.github.io/Weather_Dashboard
 
 # Usage:
 
-This project is about building a weather dashboard with form inputs.
+This project is about building a weather dashboard with form input for city name.
 
 # Screenshots
 
@@ -47,14 +47,25 @@ This project is about building a weather dashboard with form inputs.
 # References:
 
 Weather dashboard gif: (./assets/06-server-side-apis-homework-demo.png)
-How to make input box readonly or disabled? https://stackoverflow.com/questions/3676127/how-do-i-make-a-text-input-non-editable/3676132
 
-To select a particular field out of multiple fields: https://api.jquery.com/nth-child-selector/
+Display weather icon: https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
 
-To get current time: https://momentjs.com/
+Get text value from a textbox: https://stackoverflow.com/questions/3334388/getting-the-text-value-from-a-textbox
 
-To select specific row: https://forum.jquery.com/topic/how-to-select-specific-row-col-tr-td
+UV Index guide: https://www.who.int/uv/publications/en/UVIGuide.pdf
 
-© 2020 Atul Mahajan. All Rights Reserved.
+Change color of label using jquery: https://stackoverflow.com/questions/11809378/change-color-of-label-using-jquery
+
+List group using bootstrap: https://getbootstrap.com/docs/4.0/components/list-group/
+
+Display Card using bootstrap: https://getbootstrap.com/docs/4.0/components/card/
+
+Get tommorow's date using moment: http://tom-jaeschke.blogspot.com/2013/10/get-tomorrows-date-with-momentjs-and.html
+
+Convert kelvin temperature to farhenheit: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_temp_converter_kelvin_to_fahrenheit
+
+Convert value to 2 decimal places: https://stackoverflow.com/questions/9881773/converting-a-value-to-2-decimal-places-within-jquery
+
+Adding degree F: https://www.w3schools.com/howto/howto_js_temperature_converter.asp
 
 # Weather_Dashboard
